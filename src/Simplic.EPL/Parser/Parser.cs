@@ -113,8 +113,28 @@ namespace Simplic.EPL
                             sb.Append(token.Content);
                         }
                     }
+                    
+                    // Set as command
+                    if (lastCommand != null)
+                    {
+                        string[] newParamArr = new string[paramCounter + 1];
 
-                    lastCommand.Data = sb.ToString();
+                        newParamArr[paramCounter] = sb.ToString();
+
+                        if (lastCommand.Parameter != null)
+                        {
+                            for (int i = 0; i < paramCounter; i++)
+                            {
+                                newParamArr[i] = lastCommand.Parameter[i];
+                            }
+                        }
+
+                        // Set token content
+                        lastCommand.Parameter = newParamArr;
+                        paramCounter++;
+                        state = ParserState.ExpectNewCommand | ParserState.ExpectParamSeperator;
+                    }
+
                     state = ParserState.ExpectParamSeperator | ParserState.ExpectNewCommand;
                 }
                 // Parse command data
@@ -188,7 +208,7 @@ namespace Simplic.EPL
                             }
 
                             string newTokenContent = token.Content.Remove(0, cmd.Length);
-                            
+
                             if (newTokenContent == "" && (tokens.Count == 0 || tokens.PeekFirst().Content == Environment.NewLine))
                             {
                                 state = ParserState.ExpectNewCommand;
@@ -196,8 +216,11 @@ namespace Simplic.EPL
                             else
                             {
                                 state = ParserState.ExpectParameter;
-                                // Add first parameter value again
-                                tokens.PushFront(new Lexer.RawToken(newTokenContent, new Tuple<int, int>(0, 0), new Tuple<int, int>(0, 0)));
+                                if (!string.IsNullOrWhiteSpace(newTokenContent))
+                                {
+                                    // Add first parameter value again
+                                    tokens.PushFront(new Lexer.RawToken(newTokenContent, new Tuple<int, int>(0, 0), new Tuple<int, int>(0, 0)));
+                                }
                             }
 
                             break;
@@ -268,7 +291,7 @@ namespace Simplic.EPL
                 }
             }
 
-            return  false;
+            return false;
         }
     }
 }

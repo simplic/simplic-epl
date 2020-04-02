@@ -72,6 +72,8 @@ namespace Simplic.EPLEditor
 
             slider.ValueChanged += OnSliderValueChanged;
 
+            this.GotFocus += OnEditorGotFocus;
+            this.GotKeyboardFocus += OnEditorGotKeyboardFocus;
             // Set default width
             var dpiXProperty = typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static);
 
@@ -86,6 +88,28 @@ namespace Simplic.EPLEditor
         #endregion
 
         #region Private Methods
+
+        #region [Focus]
+        /// <summary>
+        /// Got keyboard focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEditorGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            //Keyboard.Focus(editor);
+        }
+
+        /// <summary>
+        /// Got editor focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEditorGotFocus(object sender, RoutedEventArgs e)
+        {
+            //editor.Focus();
+        }
+        #endregion
 
         #region [OnEditorTextChanged]
         /// <summary>

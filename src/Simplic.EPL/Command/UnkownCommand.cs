@@ -36,7 +36,10 @@ namespace Simplic.EPL
         /// </summary>
         public override int MaxParameter
         {
-            get;
+            get
+            {
+                return 0;
+            }
         }
 
         /// <summary>
@@ -44,7 +47,10 @@ namespace Simplic.EPL
         /// </summary>
         public override int MinParameter
         {
-            get;
+            get
+            {
+                return 0;
+            }
         }
     }
 }
