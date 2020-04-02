@@ -1,0 +1,76 @@
+﻿<telerik:RadRibbonWindow x:Class="Simplic.EPLDesigner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Simplic.EPLDesigner"
+        mc:Ignorable="d"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:editor="clr-namespace:Simplic.EPLEditor;assembly=Simplic.EPLEditor"
+        Height="720" Width="1280" x:Name="editorControl">
+
+    <Grid x:Name="RootGrid">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <telerik:RadRibbonView HelpButtonVisibility="Hidden" ApplicationName="Simplic EPL Designer" Title="Simplic EPL Designer" x:Name="radRibbonView"
+				BackstageClippingElement="{Binding ElementName=RootGrid}" telerik:KeyTipService.IsKeyTipsEnabled="True"
+				MinimizeButtonVisibility="Visible" ApplicationButtonContent="FILE" WindowIconVisibility="Visible">
+        <telerik:RadRibbonView.QuickAccessToolBar>
+                <telerik:QuickAccessToolBar>
+                    <telerik:RadRibbonButton Text="Save" SmallImage="/Resources/Images/save_16xMD.png"
+							Size="Small" telerik:KeyTipService.AccessText="1" Click="OnSaveButtonClick" />
+                    <telerik:RadRibbonButton Text="Undo" SmallImage="/Resources/Images/Undo_16x.png"
+							Size="Small" telerik:KeyTipService.AccessText="2" Click="OnUndoButtonClick" />
+                    <telerik:RadRibbonButton Text="Print" SmallImage="/Resources/Images/Print_11009.png"
+							Size="Small" telerik:KeyTipService.AccessText="3" Click="OnPrintButtonClick" />
+            </telerik:QuickAccessToolBar>
+            </telerik:RadRibbonView.QuickAccessToolBar>
+
+            <telerik:RadRibbonView.Backstage>
+                <telerik:RadRibbonBackstage>
+                    <telerik:RadRibbonBackstageItem Header="Save" IsSelectable="False" Click="OnSaveButtonClick"
+                                                    Icon="/Resources/Images/save_16xMD.png" />
+                    <telerik:RadRibbonBackstageItem Header="Save As" IsSelectable="False" Click="OnSaveUnderButtonClick"
+                                                    Icon="/Resources/Images/save_16xMD.png" />
+                    <telerik:RadRibbonBackstageItem Header="Open" IsSelectable="False" Click="OnOpenClick"
+                                                    Icon="/Resources/Images/Open_6529.png" />
+                    <telerik:RadRibbonBackstageItem Header="Options" IsSelectable="False"
+                                                    Icon="/Resources/Images/327_Options_16x16_72.png" />
+                    <telerik:RadRibbonBackstageItem Header="Exit" IsSelectable="False" Click="OnExitButtonClick"
+                                                    Icon="/Resources/Images/Close_16xLG.png"  />
+                </telerik:RadRibbonBackstage>
+            </telerik:RadRibbonView.Backstage>
+            
+            <telerik:RadRibbonView.ContextualGroups>
+                <telerik:RadRibbonContextualGroup x:Name="ChartTools" Header="Chart Tools" />
+            </telerik:RadRibbonView.ContextualGroups>
+            
+            <telerik:RadRibbonTab Header="Home" telerik:KeyTipService.AccessText="H">
+                <telerik:RadRibbonGroup Header="Clipboard" telerik:ScreenTip.Title="Clipboard"
+						telerik:ScreenTip.Description="Show the Clipboard Task options."
+						telerik:KeyTipService.AccessText="FO">
+                    <telerik:RadRibbonButton Text="Paste" SmallImage="Resources/Images/Paste.png"
+							LargeImage="Resources/Images/Paste.png" Size="Large"
+							telerik:ScreenTip.Title="Paste"
+							telerik:ScreenTip.Description="Paste the contents of the Clipboard."
+							telerik:KeyTipService.AccessText="V" Click="OnPasteClick">
+                    </telerik:RadRibbonButton>
+                    <telerik:RadCollapsiblePanel>
+                        <telerik:RadRibbonButton Text="Cut" SmallImage="Resources/Images/Cut_6523.png" Click="OnCutClick"
+								CollapseToSmall="WhenGroupIsMedium" telerik:ScreenTip.Title="Cut"
+								telerik:ScreenTip.Description="Cut the selection from the document and put it on the Clipboard."
+								telerik:KeyTipService.AccessText="X" />
+                        <telerik:RadRibbonButton Text="Copy" SmallImage="Resources/Images/Copy_6524.png" Click="OnCopyClick"
+								CollapseToSmall="WhenGroupIsMedium" telerik:ScreenTip.Title="Copy"
+								telerik:ScreenTip.Description="Copy the selection and put it on the Clipboard."
+								telerik:KeyTipService.AccessText="C" />
+                    </telerik:RadCollapsiblePanel>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+        </telerik:RadRibbonView>
+        <editor:Editor x:Name="editor" Grid.Row="1" Grid.ColumnSpan="2" />
+    </Grid>
+</telerik:RadRibbonWindow>

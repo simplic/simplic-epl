@@ -1,0 +1,54 @@
+﻿<SyntaxDefinition name="EPL"
+        xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+  <Color name="Comment" foreground="Green" />
+  <Color name="String" foreground="Blue" />
+  <Color name="Command" foreground="Orange" />
+
+  <!-- This is the main ruleset. -->
+  <RuleSet>
+    <Span color="Comment" begin=";" />
+
+    <Span color="Command" multiline="true">
+      <Begin>@{</Begin>
+      <End>}@</End>
+      <RuleSet>
+        <!-- nested span for escape sequences -->
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <Span color="String">
+      <Begin>"</Begin>
+      <End>"</End>
+      <RuleSet>
+        <!-- nested span for escape sequences -->
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <Span color="Command">
+      <Begin>{</Begin>
+      <End>}</End>
+      <RuleSet>
+        <!-- nested span for escape sequences -->
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <Keywords fontWeight="bold" foreground="Blue">
+      <Word>if</Word>
+    </Keywords>
+
+    <Rule foreground="Red">^[A|AUTOFR|B|b|C|D|dump|EI|EK|eR|ES|f|fB|FE|FI|FK|FR|FS|GG|GI|GK|GM|GW|i|I|JB|JC|JF|LE|LO|LS|LW|M|N|o|oB|oE|oH|oM|oR|oW|O|OEPL\1|P|PA|q|Q|r|R|S|T|TS|TT|U|UA|UB|UE|UF|UG|UI|UM|IN|UP|UQ|US|UT|V|W|xa|X|Y|Z]</Rule>
+
+    <!-- Digits -->
+    <Rule foreground="DarkBlue">
+      \b0[xX][0-9a-fA-F]+  # hex number
+      |    \b
+      (    \d+(\.[0-9]+)?   #number with optional floating point
+      |    \.[0-9]+         #or just starting with floating point
+      )
+      ([eE][+-]?[0-9]+)? # optional exponent
+    </Rule>
+  </RuleSet>
+</SyntaxDefinition>
