@@ -24,6 +24,6 @@ namespace Simplic.EPL
         /// <param name="code">Code block to process</param>
         /// <param name="formular">EPL formular which calls the processing code</param>
         /// <param name="commandIndex">Current command index, will be needed for adding commands dynamically after or before a specific index</param>
-        void Process(string code, EPLFormular formular, int commandIndex);
+        string Process(string code, EPLFormular formular, int commandIndex);
     }
 }
