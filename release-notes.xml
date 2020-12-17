@@ -1,2 +1,5 @@
 <ReleaseNotes>
+  <ChangeSet>
+    <Change type="feature">Change IPreprocessor to enable a return-value of python code-blocks.</Change>
+  </ChangeSet>
 </ReleaseNotes>

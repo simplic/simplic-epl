@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ENV", "ENV", "{4042DDAE-43CA-4ADE-A0FF-29E068C48C5A}"
 	ProjectSection(SolutionItems) = preProject
 		..\azure-pipelines.yml = ..\azure-pipelines.yml
+		..\release-notes.xml = ..\release-notes.xml
 	EndProjectSection
 EndProject
 Global
