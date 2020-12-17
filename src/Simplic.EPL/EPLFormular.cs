@@ -67,13 +67,15 @@ namespace Simplic.EPL
 
             foreach (var cmd in commands)
             {
-                // Script script commands, they are not EPL-Compatible
+                // Script commands, they are not EPL-Compatible
                 if (cmd is ScriptCommand)
                 {
                     // Just process
                     if (callPreprocessor && processor != null)
                     {
-                        processor.Process(cmd.Data, this, i);
+                        var result = processor.Process(cmd.Data, this, i);
+                        if (!string.IsNullOrWhiteSpace(result))
+                            sb.Append(result);
                     }
 
                     continue;

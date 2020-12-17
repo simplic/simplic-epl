@@ -16,9 +16,10 @@ namespace Simplic.EPLDesigner
             host = new Dlr.DlrHost<Dlr.IronPythonLanguage>(new Dlr.IronPythonLanguage());
         }
 
-        public void Process(string code, EPLFormular formular, int commandIndex)
+        public string Process(string code, EPLFormular formular, int commandIndex)
         {
             host.DefaultScope.Execute(code);
+            return "";
         }
 
         public string ProcessStatement(string statement)
